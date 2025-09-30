@@ -84,3 +84,25 @@ const galleryMarkup = images
   .join('');
 
 gallery.innerHTML = galleryMarkup;
+
+
+
+gallery.addEventListener('click', onGalleryClick);
+
+function onGalleryClick(event) {
+  event.preventDefault();
+
+  
+  const isImage = event.target.classList.contains('gallery-image');
+  if (!isImage) return;
+
+  
+  const largeImageURL = event.target.dataset.source;
+
+
+  const instance = basicLightbox.create(`
+    <img src="${largeImageURL}" width="800" height="600">
+  `);
+
+  instance.show();
+}
